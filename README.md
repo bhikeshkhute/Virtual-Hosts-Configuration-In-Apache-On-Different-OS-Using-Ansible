@@ -12,7 +12,7 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 
 Following are the steps to try it on your own local :D 
 
-```bash
+```
 1. git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Using-Ansible
 ```
 2. Installing Ansible:
