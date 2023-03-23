@@ -13,7 +13,9 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 Following are the steps to try it on your own local :D 
 1. Cloing the repo:
 
-```git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Using-Ansible```
+``` 
+	git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Using-Ansible
+```
 
 2. Installing Ansible:
 ```
@@ -34,8 +36,8 @@ Following are the steps to try it on your own local :D
 
 3. Go the ec2 ip/localhost and search:
 
-	```http://<ip>:8081```
-	```http://<ip>:8082```
+```	http://<ip>:8081```
+```	http://<ip>:8082```
 
 If you are in connected on a LAN, other systems/computers can ping and browse the website.
 
