@@ -16,13 +16,14 @@ Following are the steps to try it on your own local :D
 ``` 
 git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Using-Ansible
 ```
-
 2. Installing Ansible:
 
 	2.1 - For Debian/Ubuntu 
+	
 	```sudo apt-get install ansible-core```
 		 
 	2.1 - For RedHat/CentOS 
+	
 	```sudo yum install ansible-core```
 
 3. Configuring ansible to become master-node.
