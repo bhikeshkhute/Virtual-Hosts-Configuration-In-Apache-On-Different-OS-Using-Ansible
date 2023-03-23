@@ -11,7 +11,8 @@ The type of virtual host for the project is # IP-PORT based.
 We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/other cloud providers to test the same.
 
 Following are the steps to try it on your own local :D 
-1. Cloing the repo
+1. Cloing the repo:
+
 ```git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Using-Ansible```
 
 2. Installing Ansible:
@@ -31,7 +32,7 @@ Following are the steps to try it on your own local :D
 		ansible-playbook master.yml
 		```
 
-3. Go the ec2 ip/localhost and search
+3. Go the ec2 ip/localhost and search:
 
 ```http://<ip>:8081```
 ```http://<ip>:8082```
