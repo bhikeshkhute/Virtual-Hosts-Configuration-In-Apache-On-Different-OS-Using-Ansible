@@ -6,13 +6,13 @@ In this project, we will be deploying multiple websites on a single webserver ir
 
 We have chosen a sample shopping website and a travel website to demostrate virtual host configuration. Reference - https://www.free-css.com/
 
-The type of virtual host for the project is #IP-PORT based. 
+The type of virtual host for the project is # IP-PORT based. 
 
 We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/other cloud providers to test the same.
 
 Following are the steps to try it on your own local :D 
 
-1. git clone <>
+1. git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Using-Ansible
 
 2. Installing Ansible-
     2.1 - For Debian/Ubuntu -sudo apt-get install ansible-core
@@ -20,7 +20,7 @@ Following are the steps to try it on your own local :D
     2.2 - Configuring ansible to become master-node.
 		/etc/ansible/hosts
 	[demo]
-	 master ansible_user=<> ansible_ip=<> ansible_key=<>
+	 master ansible_user=<osuser> ansible_ip=<privateip> ansible_key=<ifusingec2elseskip>
 
     2.3 - Run ansible-playbook master.yml
 
@@ -39,6 +39,8 @@ Open - /etc/hosts
 127.0.0.1 travel.com
 
 Now, you can easily search http://www.shop.com or http://www.travel.com
+	
+Any recommendations? Ping me on - bhikesh.khute@outlook.com
 
 
 
