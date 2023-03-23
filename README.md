@@ -19,17 +19,17 @@ git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Usi
 
 2. Installing Ansible:
 ```
-2.1 - 	For Debian/Ubuntu -sudo apt-get install ansible-core
+	2.1 - 	For Debian/Ubuntu -sudo apt-get install ansible-core
 		 
 	For RedHat/CentOS - sudo yum install ansible-core 
 ```
 
-2.2 - 	Configuring ansible to become master-node.
+	2.2 - 	Configuring ansible to become master-node.
 	/etc/ansible/hosts
 
 	[demo]
 	master ansible_user=<osuser> ansible_ip=<privateip> ansible_key=<ifusingec2elseskip>
-2.3 -	Run 	
+	2.3 -	Run 	
 	```
 	ansible-playbook master.yml
 	```
