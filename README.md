@@ -20,11 +20,15 @@ git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Usi
 
 	2.1 - For Debian/Ubuntu 
 	
-	```sudo apt-get install ansible-core```
+	```
+	sudo apt-get install ansible-core
+	```
 		 
 	2.1 - For RedHat/CentOS 
 	
-	```sudo yum install ansible-core```
+	```
+	sudo yum install ansible-core
+	```
 
 3. Configuring ansible to become master-node.
 
@@ -40,9 +44,13 @@ git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Usi
 
 4. Go the ec2 ip/localhost and search:
 
-	```http://<ip>:8081```
+	```
+	http://<ip>:8081
+	```
 
-	```http://<ip>:8082```
+	```
+	http://<ip>:8082
+	```
 
 If you are in connected on a LAN, other systems/computers can ping and browse the website.
 
