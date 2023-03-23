@@ -31,7 +31,7 @@ Following are the steps to try it on your own local :D
 http://<ip>:8081
 http://<ip>:8082
 
-If you are in an LAN and other systems/computers can ping you, they can also check and browse the website.
+If you are in connected on a LAN, other systems/computers can ping and browse the website.
 
 Note - We can configure name-based configuration if you are using Linux OS/VM. Do the following changes:
 
