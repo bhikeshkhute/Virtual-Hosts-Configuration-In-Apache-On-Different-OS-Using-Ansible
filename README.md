@@ -59,6 +59,7 @@ Note - We can configure name-based configuration if you are using Linux OS/VM. D
 Open - /etc/hosts and add the following lines:
 
 127.0.0.1 shop.com
+
 127.0.0.1 travel.com
 
 Now, you can easily search http://www.shop.com or http://www.travel.com
