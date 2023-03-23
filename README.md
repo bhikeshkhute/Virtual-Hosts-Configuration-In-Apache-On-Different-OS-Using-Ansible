@@ -62,7 +62,7 @@ Open - /etc/hosts and add the following lines:
 
 127.0.0.1 travel.com
 
-Now, you can easily search http://www.shop.com or http://www.travel.com
+Now, you can easily search http://www.shop.com or http://www.travel.com ( Note - This works on local computer only! This is not hosted over internet )
 	
 Any recommendations? Ping me on - bhikesh.khute@outlook.com
 
