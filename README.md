@@ -11,10 +11,7 @@ The type of virtual host for the project is # IP-PORT based.
 We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/other cloud providers to test the same.
 
 Following are the steps to try it on your own local :D 
-1. 
-```
-git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Using-Ansible
-```
+1. ```git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Using-Ansible```
 2. Installing Ansible:
 	```
 	2.1 - 	For Debian/Ubuntu -sudo apt-get install ansible-core
