@@ -27,12 +27,15 @@ Following are the steps to try it on your own local :D
 
 			[demo]
 			master ansible_user=<osuser> ansible_ip=<privateip> ansible_key=<ifusingec2elseskip>
-	2.3 -	Run - ansible-playbook master.yml
+	2.3 -	Run 	
+		```
+		ansible-playbook master.yml
+		```
 
 3. Go the ec2 ip/localhost and search
 
-http://<ip>:8081
-http://<ip>:8082
+```http://<ip>:8081```
+```http://<ip>:8082```
 
 If you are in connected on a LAN, other systems/computers can ping and browse the website.
 
