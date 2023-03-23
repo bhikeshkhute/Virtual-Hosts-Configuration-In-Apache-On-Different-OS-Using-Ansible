@@ -37,6 +37,7 @@ git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Usi
 3. Go the ec2 ip/localhost and search:
 
 ```http://<ip>:8081```
+
 ```http://<ip>:8082```
 
 If you are in connected on a LAN, other systems/computers can ping and browse the website.
