@@ -1,0 +1,40 @@
+- name: Install Apache
+  package: name=httpd state=present
+
+- name: Start Apache
+  service: name=httpd state=started
+    
+- name: Creating first website directory - {{ first_website_name }}
+  file:
+          path: /var/www/{{ first_website_name }}
+          state: directory
+
+- name: Creating second website directory - {{ second_website_name }}
+  file:
+          path: /var/www/{{ second_website_name }}
+          state: directory 
+
+- name: Moving the {{ first_website_name }} website contents to the directory
+  copy:
+                    src: "{{ first_website_path }}"
+                    dest: /var/www/
+
+- name: Moving the {{ second_website_name }} website contents to the directory
+  copy:
+                    src: "{{ second_website_path }}"
+                    dest: /var/www/
+
+- name: Creating virtualhost configuration for {{ first_website_name }} and moving to respective location
+  template:
+        src: files/website1.j2
+        dest: /etc/httpd/conf.d/{{ first_website_name }}.com.conf
+
+- name: Creating virtualhost configuration for {{ second_website_name }} and moving to respective location
+  template:
+        src: files/website2.j2
+        dest: /etc/httpd/conf.d/{{ second_website_name }}.com.conf
+
+- name: Restarting Web Services for changes to take place
+  command: echo "Final Destination Reached"
+  notify:
+          - Restart apache

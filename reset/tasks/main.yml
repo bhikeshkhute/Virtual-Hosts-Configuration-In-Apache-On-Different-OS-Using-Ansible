@@ -1,0 +1,53 @@
+  - name: Removing {{first_website_name}} from var directory
+    ansible.builtin.file:
+            path: /var/www/{{first_website_name}}
+            state: absent
+
+  - name: Removing {{second_website_name}} from var directory
+    ansible.builtin.file:
+            path: /var/www/{{second_website_name}}
+            state: absent
+
+  - name: Disabling {{first_website_name}}
+    command: a2dissite {{first_website_name}}.com.conf
+    when: ansible_os_family == "Debian"
+
+  - name: Disabling {{second_website_name}}
+    command: a2dissite {{second_website_name}}.com.conf
+    when: ansible_os_family == "Debian"
+
+  - name: Removing Virtual hosts configurations from {{first_website_name}}
+    ansible.builtin.file:
+           path: /etc/{{debianpath}}/{{first_website_name}}.com.conf
+           state: absent 
+    when: ansible_os_family == "Debian"
+
+  - name: Removing Virtual hosts configurations from {{first_website_name}}
+    ansible.builtin.file:
+           path: /etc/{{redhatpath}}/{{first_website_name}}.com.conf
+           state: absent
+    when: ansible_os_family == "RedHat"
+
+  - name: Removing Virtual hosts configurations from {{second_website_name}} website
+    ansible.builtin.file:
+           path: /etc/{{debianpath}}/{{second_website_name}}.com.conf
+           state: absent
+    when: ansible_os_family == "Debian"
+
+  - name: Removing Virtual hosts configurations from {{second_website_name}} website
+    ansible.builtin.file:
+           path: /etc/{{redhatpath}}/{{second_website_name}}.com.conf
+           state: absent
+    when: ansible_os_family == "RedHat"
+
+  - name: Restarting Apache on Ubuntu
+    service:
+        name: "{{debianservice}}"
+        state: restarted
+    when: ansible_os_family == "Debian"
+  
+  - name: Restarting Apache on Redhat
+    service:
+        name: "{{redhatservice}}"
+        state: restarted
+    when: ansible_os_family == "RedHat"

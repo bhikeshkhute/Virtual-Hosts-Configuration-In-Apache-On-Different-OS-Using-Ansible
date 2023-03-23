@@ -1,0 +1,10 @@
+- name: Activating Site-1
+  command: a2ensite {{ website1 }}
+
+- name: Activating Site-2
+  command: a2ensite {{ website2 }}
+
+- name: Restart myapache
+  service: 
+        name: apache2 
+        state: restarted
