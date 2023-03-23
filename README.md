@@ -10,7 +10,7 @@ The type of virtual host for the project is # IP-PORT based.
 
 We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/other cloud providers to test the same.
 
-Following are the steps to try it on your own local :D 
+## Following are the steps to try it on your own local :D 
 1. Cloing the repo:
 
 ``` 
