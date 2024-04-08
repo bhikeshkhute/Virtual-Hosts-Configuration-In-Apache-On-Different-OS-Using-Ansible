@@ -14,7 +14,7 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 1. Cloing the repo:
 
 	``` 
-	git clone bhikeshkhute/Virtual-Hosts-Configuration-In-Apache-On-Different-OS-Using-Ansible
+	git clone https://github.com/norfluxX/VHost-Management-with-Ansible.git
 	```
 2. Installing Ansible:
 
