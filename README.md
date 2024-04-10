@@ -14,6 +14,10 @@ We have created self signed certficates as well to deploy the sites securely.
 
 We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/other cloud providers to test the same.
 
+<p align="center">
+      <img src="https://github.com/norfluxX/VHost-Management-with-Ansible/assets/35907619/1415a8b5-c0d0-429f-a587-a4062c49cfb5" />
+</p>
+
 ## Following are the steps:
 1. Cloning the repo:
 
