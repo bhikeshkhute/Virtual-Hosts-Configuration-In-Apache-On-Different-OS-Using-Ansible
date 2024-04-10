@@ -1,4 +1,4 @@
-# Virtual Hosts + SSL Configuration on nginx webserver by ansible
+# Virtual Hosts + SSL Configuration on nginx webserver
 
 Ansible is an open source configuration management tool. One of the important tools for devops engineer for robust automation. 
 
@@ -15,7 +15,7 @@ We have created self signed certficates as well to deploy the sites securely.
 We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/other cloud providers to test the same.
 
 ## Following are the steps:
-1. Cloing the repo:
+1. Cloning the repo:
 
 	``` 
 	git clone https://github.com/norfluxX/VHost-Management-with-Ansible.git
@@ -34,19 +34,36 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 	sudo yum install ansible-core
 	```
 
-3. Configuring ansible to become master-node.
+3. Configuring ansible to become master-node and performing variable changes.
 
-	Edit /etc/ansible/hosts
+	3.1 - Edit /etc/ansible/hosts
 	```
-	[<groupname>]
-	<ip> ansible_user=ubuntu ansible_ssh_private_key_file=/home/ubuntu/tech.pem
+ 	[groupname]
+ 	ipaddress ansible_user=ubuntu ansible_ssh_private_key_file=/home/ubuntu/tech.pem
 	```
-	2.3 -	Edit the host name in master.yaml file and run 	
+
+ 	3.2 - Go to ubuntu and redhat folder and traverse to vars folder and find the main.yaml file. Make necessary changes according to your requirment:
+   	```
+	first_website_name: shop
+
+	second_website_name: travel
+
+	codelocation_one: https://www.live/shop.zip
+
+	codelocation_two: https://www.live/travel.zip
+   	```
+
+   	3.3 - Run the playbook	
 	```
-	ansible-playbook master.yml
+ 	ansible-playbook master.yml
 	```
  
-4. Go the ec2 ip/localhost and curl:
+ 	3.4 - Optional - Run this command to reset everything that was configured by playbook	
+	```
+	ansible-playbook reset_master.yml
+	```
+ 
+5. Go the ec2 ip/localhost and curl:
 	```
 	curl <ip>:<port>
 	```
@@ -54,7 +71,7 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 	```
 	curl <ip>:<port>
 	```
- 5. Assuming the websites are deployed on cloud instances, we can the access the same over internet using the following URLs:
+ 6. Assuming the websites are deployed on cloud instances, we can the access the same over internet using the following URLs:
     
     	https://ipaddress/shop/
 
