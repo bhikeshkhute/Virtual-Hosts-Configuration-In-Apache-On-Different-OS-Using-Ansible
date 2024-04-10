@@ -1,4 +1,4 @@
-- hosts: master
+- hosts: dev
   become: yes
   roles:
           - role: ubuntu

@@ -1,44 +1,58 @@
-- name: Install Apache
-  package: name=apache2 state=present
+- name: Install Nginx
+  package: name=nginx state=present
 
-- name: Start Apache
-  service: name=apache2 state=started
-    
-- name: Creating first website directory - {{ first_website_name }}
+- name: Start Nginx
+  service: name=nginx state=started
+ 
+- name: Fetching code for first website
+  unarchive:
+      src: " {{ codelocation_one }}"
+      dest: /home/ubuntu
+      remote_src: yes
+
+- name: Placing files on the shelf for webiste - one
+  copy:
+      src: /home/ubuntu/{{ first_website_name }}/
+      dest: /var/www/{{ first_website_name}}.com
+      remote_src: yes
+  tags: shop
+ 
+- name: Fetching code for second website
+  unarchive:
+      src: " {{ codelocation_two }}"
+      dest: /home/ubuntu
+      remote_src: yes
+
+- name: Placing files on the shelf for webiste - two
+  copy:
+      src: /home/ubuntu/{{ second_website_name }}/
+      dest: /var/www/{{ second_website_name }}.com
+      remote_src: yes
+  tags: travel
+
+- name: Creating directories for certificates
   file:
-          path: /var/www/{{ first_website_name }}
+          path: /etc/nginx/certs
           state: directory
 
-- name: Creating second website directory - {{ second_website_name }}
+- name: Creating global private key for websites
+  command: "openssl genrsa -out /etc/nginx/certs/sites.key 2048"
+
+- name: Creating global certificate file for websites
+  command: "openssl req -key /etc/nginx/certs/sites.key -new -x509 -days 365 -subj '/CN=*.sites.com/O=ITS Pvt Ltd/C=IN' -out /etc/nginx/certs/sites.crt"
+
+- name: Creating virtualhost configurations for websites and moving to respective location
+  template:
+        src: files/sites.j2
+        dest: /etc/nginx/sites-available/sites.com.conf
+
+- name: Enabling {{ first_website_name }}
   file:
-          path: /var/www/{{ second_website_name }}
-          state: directory 
-
-- name: Moving the {{ first_website_name }} website contents to the directory
-  copy:
-                    src: "{{ first_website_path }}"
-                    dest: /var/www/
-
-- name: Moving the {{ second_website_name }} website contents to the directory
-  copy:
-                    src: "{{ second_website_path }}"
-                    dest: /var/www/
-
-- name: Creating virtualhost configuration for {{ first_website_name }} and moving to respective location
-  template:
-        src: files/website1.j2
-        dest: /etc/apache2/sites-available/{{ first_website_name }}.com.conf
-  notify:
-          - Activating Site-1
-
-- name: Creating virtualhost configuration for {{ second_website_name }} and moving to respective location
-  template:
-        src: files/website2.j2
-        dest: /etc/apache2/sites-available/{{ second_website_name }}.com.conf
-  notify:
-          - Activating Site-2
+          src: /etc/nginx/sites-available/sites.com.conf
+          dest: /etc/nginx/sites-enabled/sites.com.conf
+          state: link
 
 - name: Restarting Web Services for changes to take place
   command: echo "Final Destination Reached"
   notify:
-          - Restart myapache
+          - Restart nginx

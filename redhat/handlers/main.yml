@@ -1,4 +1,4 @@
-- name: Restart apache
+- name: Restart nginx
   service: 
-        name: httpd
+        name: nginx
         state: restarted

@@ -1,13 +1,4 @@
 first_website_name: shop
 second_website_name: travel
-
-#LOCATED IN FILES/
-first_website_path: shop
-#LOCATED IN FILES/
-second_website_path: travel
-portnumber1: 8081
-portnumber2: 8082
-website1: shop.com
-website2: travel.com
-path1: /var/www/shop/
-path2: /var/www/travel/
+codelocation_one: https://norflux.live/shop.zip 
+codelocation_two: https://norflux.live/travel.zip

@@ -1,0 +1,47 @@
+server{
+    listen 8008;
+    listen [::]:8008;
+
+    server_name {{ first_website_name}}.com www.{{ first_website_name}}.com;
+
+    root /var/www/{{ first_website_name}}.com;
+    index index.html index.htm;
+
+}
+
+server{
+    listen 8009;
+    listen [::]:8009;
+
+    server_name {{ second_website_name}}.com www.{{ second_website_name}}.com;
+
+    root /var/www/{{ second_website_name}}.com;
+    index index.html index.htm;
+
+}
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    ssl_certificate /etc/nginx/certs/sites.crt;
+    ssl_certificate_key /etc/nginx/certs/sites.key;
+
+
+    location /shop/ {
+        proxy_pass http://localhost:8008/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect default;
+    }
+
+   location /travel/ {
+        proxy_pass http://localhost:8009/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect default;
+    }
+}

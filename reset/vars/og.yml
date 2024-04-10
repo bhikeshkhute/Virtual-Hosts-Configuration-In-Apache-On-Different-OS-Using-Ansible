@@ -1,5 +1,0 @@
-debianpath: apache2/sites-available
-redhatpath: httpd/conf.d
-
-debianservice: apache2
-redhatservice: httpd
