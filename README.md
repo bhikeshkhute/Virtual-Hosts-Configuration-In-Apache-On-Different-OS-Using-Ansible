@@ -55,30 +55,12 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 	curl <ip>:<port>
 	```
  5. Assuming the websites are deployed on cloud instances, we can the access the same over internet using the following URLs:
-    	```
-    	https://<ip>/shop
-    	```
-    	```
-    	https://<ip>/travel
-    	```
+    
+    	https://ipaddress/shop/
 
-If you are in connected on a LAN, other systems/computers can ping and browse the website.
-
-Note - If you wish to route the website using domain, make the following changes on your Windows/Linux hosts path:
-
-On Linux - /etc/hosts and add the following lines:
-
-<ip> shop.com
-
-<ip> travel.com
-
-On Windows - C:\Windows\System32\drivers\etc\hosts 
-
-<ip> shop.com
-
-<ip> travel.com
-
-Now, you can easily search http://www.shop.com or http://www.travel.com ( Note - This works on local computer only! This is not hosted over internet )
+	```
+	https://ipaddress/travel/
+ 	```
 	
 Any recommendations? Ping me on - bhikesh.khute@outlook.com
 
