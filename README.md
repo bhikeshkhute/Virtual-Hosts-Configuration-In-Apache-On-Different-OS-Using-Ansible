@@ -21,7 +21,7 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 	2.1 - For Debian/Ubuntu 
 	
 	```
-	sudo apt-get install ansible-core
+	sudo apt-get install ansible
 	```
 		 
 	2.1 - For RedHat/CentOS 
@@ -34,10 +34,10 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 
 	vi /etc/ansible/hosts
 	```
-	[demo]
-	master ansible_user=<osuser> ansible_ip=<privateip> ansible_key=<ifusingec2elseskip>
+	[dev]
+	<ip> ansible_user=ubuntu ansible_ssh_private_key_file=/home/ubuntu/tech.pem
 	```
-	2.3 -	Run 	
+	2.3 -	Edit the host name in master.yaml file and run 	
 	```
 	ansible-playbook master.yml
 	```
