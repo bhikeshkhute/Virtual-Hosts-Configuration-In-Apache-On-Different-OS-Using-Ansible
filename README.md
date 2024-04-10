@@ -42,7 +42,7 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
  	ipaddress ansible_user=ubuntu ansible_ssh_private_key_file=/home/ubuntu/tech.pem
 	```
 
- 	3.2 - Go to ubuntu and redhat folder and traverse to vars folder and find the main.yaml file. Make necessary changes according to your requirment:
+ 	3.2 - Go to ubuntu and redhat folder and traverse to vars folder and find the main.yaml file. Make necessary changes according to your requirement:
    	```
 	first_website_name: shop
 
