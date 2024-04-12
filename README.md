@@ -8,8 +8,6 @@ We have chosen a sample shopping website and a travel website to demostrate virt
 
 Reference - https://www.free-css.com/
 
-The type of virtual host for the project is <strong>IP-PORT</strong> based. 
-
 We have created self signed certficates as well to deploy the sites securely.
 
 We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/other cloud providers to test the same.
