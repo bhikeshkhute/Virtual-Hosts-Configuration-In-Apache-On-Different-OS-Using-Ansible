@@ -54,9 +54,9 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 
     email: youremail
 
-	codelocation_one: https://www.live/shop.zip
+	codelocation_one: https://norflux.live/shop.norflux.live.zip
 
-	codelocation_two: https://www.live/travel.zip
+	codelocation_two: https://norflux.live/travel.norflux.live.zip
    	```
 
    	3.3 - Run the playbook	
