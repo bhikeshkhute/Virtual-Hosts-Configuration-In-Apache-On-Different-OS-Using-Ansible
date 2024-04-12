@@ -19,6 +19,8 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 </p>
 
 ## Following are the steps:
+0. Map the IP address of the slave machines to your domain register(GoDaddy, Hostinger, etc).
+
 1. Cloning the repo:
 
 	``` 
@@ -48,9 +50,11 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 
  	3.2 - Go to ubuntu and redhat folder and traverse to vars folder and find the main.yaml file. Make necessary changes according to your requirement:
    	```
-	first_website_name: shop
+	website1: shop.norflux.live
 
-	second_website_name: travel
+	website2: shop.norflux.live
+
+    email: youremail
 
 	codelocation_one: https://www.live/shop.zip
 
@@ -66,23 +70,14 @@ We are using Amazon EC2 instance for the demo. You may also use VM/Linux OS/othe
 	```
 	ansible-playbook reset_master.yml
 	```
- 
-5. Go the ec2 ip/localhost and curl:
-	```
-	curl <ip>:<port>
-	```
 
+ 4. Assuming the codes are deployed on cloud instances, now, we can the access the same over internet using the following URLs:
 	```
-	curl <ip>:<port>
+	https://shop.norflux.live/
 	```
- 6. Assuming the websites are deployed on cloud instances, we can the access the same over internet using the following URLs:
-    
-    	https://ipaddress/shop/
-
 	```
-	https://ipaddress/travel/
- 	```
-	
+ 	https://travel.norflux.live/
+	```
 Any recommendations? Ping me on - bhikesh.khute@outlook.com
 
 
