@@ -1,32 +1,41 @@
 - name: Install Nginx
   package: name=nginx state=present
 
+- name: Install unzip on the system
+  package: name=unzip state=present
+
+- name: Update cache of the system
+  apt: 
+        update_cache: yes
+
 - name: Start Nginx
   service: name=nginx state=started
  
 - name: Fetching code for first website
   unarchive:
       src: " {{ codelocation_one }}"
-      dest: /home/ubuntu
+      dest: /home/ec2-user
       remote_src: yes
+  tags: site1
 
 - name: Placing files on the shelf for webiste - one
   copy:
-      src: /home/ubuntu/{{ first_website_name }}/
-      dest: /var/www/{{ first_website_name}}.com
+      src: /home/ec2-user/{{ website1 }}/
+      dest: /var/www/{{ website1 }}
       remote_src: yes
   tags: shop
  
 - name: Fetching code for second website
   unarchive:
       src: " {{ codelocation_two }}"
-      dest: /home/ubuntu
+      dest: /home/ec2-user
       remote_src: yes
+  tags: site2
 
 - name: Placing files on the shelf for webiste - two
   copy:
-      src: /home/ubuntu/{{ second_website_name }}/
-      dest: /var/www/{{ second_website_name }}.com
+      src: /home/ec2-user/{{ website2 }}/
+      dest: /var/www/{{ website2 }}
       remote_src: yes
   tags: travel
 
@@ -36,23 +45,60 @@
           state: directory
 
 - name: Creating global private key for websites
-  command: "openssl genrsa -out /etc/nginx/certs/sites.key 2048"
+  command: "openssl genrsa -out /etc/nginx/certs/privkey1.pem 2048"
 
 - name: Creating global certificate file for websites
-  command: "openssl req -key /etc/nginx/certs/sites.key -new -x509 -days 365 -subj '/CN=*.sites.com/O=ITS Pvt Ltd/C=IN' -out /etc/nginx/certs/sites.crt"
-
-- name: Creating virtualhost configurations for websites and moving to respective location
+  command: "openssl req -key /etc/nginx/certs/privkey1.pem -new -x509 -days 365 -subj '/CN=*.sites.com/O=ITS Pvt Ltd/C=IN' -out /etc/nginx/certs/cert1.pem"
+          
+- name: Creating virtualhost configuration for website1
   template:
-        src: files/sites.j2
-        dest: /etc/nginx/sites-available/sites.com.conf
+        src: files/website1.j2
+        dest: /etc/nginx/sites-available/{{ website1 }}.conf
 
-- name: Enabling {{ first_website_name }}
+- name: Creating virtualhost configuration for website2
+  template:
+        src: files/website2.j2
+        dest: /etc/nginx/sites-available/{{ website2 }}.conf
+
+- name: Enabling Website1
   file:
-          src: /etc/nginx/sites-available/sites.com.conf
-          dest: /etc/nginx/sites-enabled/sites.com.conf
+          src: /etc/nginx/sites-available/{{ website1 }}.conf
+          dest: /etc/nginx/sites-enabled/{{ website1 }}.conf
           state: link
 
+- name: Enabling Website2
+  file:
+          src: /etc/nginx/sites-available/{{ website2 }}.conf
+          dest: /etc/nginx/sites-enabled/{{ website2 }}.conf
+          state: link
+
+- name: Install certbot on the system
+  package:
+          name:
+           - certbot
+           - python3-certbot-nginx
+          state: present 
+  tags: certbot
+
+- name: Fetching free SSL/TLS certificates from Let's Encrypt for Website1
+  command: "certbot certonly --nginx --non-interactive --agree-tos --email={{ email }} -d {{ website1 }} -d {{ website1 }}" 
+  tags: bot1
+
+- name: Fetching free SSL/TLS certificates from Let's Encrypt for Website2
+  command: "certbot certonly --nginx --non-interactive --agree-tos --email={{ email }} -d {{ website2 }} -d {{ website2 }}"
+  tags: bot2
+
+- name: Changing SSL certificate path in the virtual configuration for website1
+  ansible.builtin.replace:
+          path: /etc/nginx/sites-available/{{ website1 }}.conf
+          regexp: '/etc/nginx/certs'
+          replace: '/etc/letsencrypt/archive/{{ website1 }}'          
+
+- name: Changing SSL certificate path in the virtual configuration for website2
+  ansible.builtin.replace:
+          path: /etc/nginx/sites-available/{{ website2 }}.conf
+          regexp: '/etc/nginx/certs'
+          replace: '/etc/letsencrypt/archive/{{ website2 }}'
+
 - name: Restarting Web Services for changes to take place
-  command: echo "Final Destination Reached"
-  notify:
-          - Restart nginx
+  service: name=nginx state=restarted
